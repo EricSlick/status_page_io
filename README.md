@@ -14,12 +14,11 @@ Right now, this is just a place to save off my variant of Richard King's main St
 down version of this class to automate creating an incident when we put a product into unscheduled
 maintenance.
 
-You may wish to just copy and modify the main class (StatusPageIo), just like I did with statuspagerb and modify
-it to suit your needs.  Eventually I will add tests and some examples of how to use it. All you need, though, is the
-main class and the statuspageio.yml file. Of course, if you use just the main class, you can simply put the
-configuration information directly into the class.
+You may wish to just copy the main class, StatusPageIo, (just like I did with statuspagerb) and modify
+it to suit your needs.  Eventually, it will become a proper gem. I will add tests and some examples
+of how you can use it.
 
-If you want to use this as a gem now, you will need to build it locally for the time being.
+If you want to use this as a gem now, you will need to build the gem locally.
 
     gem build status_page_io.gemspec
 
