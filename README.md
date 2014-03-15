@@ -19,11 +19,11 @@ it to suit your needs.  Eventually I will add tests and some examples of how to 
 main class and the statuspageio.yml file. Of course, if you use just the main class, you can simply put the
 configuration information directly into the class.
 
-If you want to use this as a gem now, you will need to build it locally for now.
+If you want to use this as a gem now, you will need to build it locally for the time being.
 
-gem build status_page_io.gemspec
+    gem build status_page_io.gemspec
 
-in the future though...
+Someday though...
 
 Add this line to your application's Gemfile:
 
@@ -39,7 +39,10 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Inside the config folder at your project's root add a status_page_io.yml file with the following...
+
+    oauth: <your status page key>
+    page: <your page id>
 
 ## Contributing
 
