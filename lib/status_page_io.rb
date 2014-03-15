@@ -1,4 +1,3 @@
-require "status_page_io/version"
 require 'rubygems'
 require 'httparty'
 require 'yaml'
