@@ -29,7 +29,7 @@ module StatusPageIo
 
     def update_component(args_hash)
       url = "#{@api_url}/components/#{args_hash[:id] || component_by(args_hash)["id"] }.json"
-      httparty_send(:patch, url, body: { 'component[status]' => args_hash[:status]}).body
+      httparty_send(:patch, url, body: { 'component[status]' => args_hash[:status] }).body
     end
 
     def incident_by(args_hash)
@@ -42,8 +42,9 @@ module StatusPageIo
       @unresolved_incidents.select { |i| i['id'] == args_hash[:id] }.first
     end
 
+    # creates either a realtime or scheduled incident
     def create_incident(args_hash)
-      options = {body: { 'incident[name]' => args_hash[:name], 'incident[status]' => args_hash[:status], 'incident[message]' => args_hash[:message]}}
+      options = { body: { 'incident[name]' => args_hash[:name], 'incident[status]' => args_hash[:status], 'incident[message]' => args_hash[:message] } }
       options[:body].merge!({ 'incident[scheduled_for]=' => args_hash[:start_time], 'incident[scheduled_until]' => args_hash[:end_time]}) if args_hash[:start_time]
       httparty_send(:post, "#{@api_url}/incidents.json", options).body
     end
@@ -54,7 +55,7 @@ module StatusPageIo
     end
 
     def tune_incident_update(args_hash)
-      options = { body: { 'incident_update[body]' => args_hash[:message]}}
+      options = { body: { 'incident_update[body]' => args_hash[:message] } }
       httparty_send(:patch, "#{@api_url}/incidents/#{args_hash[:id]}/incident_updates/#{args_hash[:update_id]}.json", options).body
     end
 
@@ -96,7 +97,7 @@ module StatusPageIo
     end
 
     def httparty_send(action, url, options = {})
-      options.merge!(:headers => { 'Authorization: OAuth' => @oauth })
+      options.merge!(headers: { 'Authorization: OAuth' => @oauth })
       HTTParty.send(action, url, options)
     end
   end
