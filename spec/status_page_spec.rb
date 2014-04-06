@@ -7,9 +7,9 @@ describe StatusPageIo::StatusPage do
 
     before :each do
       ENV['STATUS_PAGE_DIR'] = 'spec/support'
-      stub_request(:get, "https://api.statuspage.io/v1/pages/g987654321/components.json").
-          with(:headers => { 'Authorization: oauth' => 'abcdefghij1234567890' }).
-          to_return(:status => 200, :body => "", :headers => {})
+      stub_request(:get, 'https://api.statuspage.io/v1/pages/g987654321/components.json').
+          with(headers: { 'Authorization: oauth' => 'abcdefghij1234567890' }).
+          to_return(status: 200, body: "", headers: {})
     end
 
     it 'creates a valid object' do
