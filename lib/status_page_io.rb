@@ -45,7 +45,7 @@ module StatusPageIo
     # creates either a realtime or scheduled incident
     def create_incident(args_hash)
       options = { body: { 'incident[name]' => args_hash[:name], 'incident[status]' => args_hash[:status], 'incident[message]' => args_hash[:message] } }
-      options[:body].merge!({ 'incident[scheduled_for]=' => args_hash[:start_time], 'incident[scheduled_until]' => args_hash[:end_time]}) if args_hash[:start_time]
+      options[:body].merge!({ 'incident[scheduled_for]=' => args_hash[:start_time], 'incident[scheduled_until]' => args_hash[:end_time] }) if args_hash[:start_time]
       httparty_send(:post, "#{@api_url}/incidents.json", options).body
     end
 
