@@ -27,11 +27,6 @@ module StatusPageIo
       get_components_json.select { |c| c['id'] == component_id }.first
     end
 
-    def update_component(args_hash)
-      url = "#{@api_url}/components/#{args_hash[:id] || component_by(args_hash)["id"] }.json"
-      httparty_send(:patch, url, body: { 'component[status]' => args_hash[:status] }).body
-    end
-
     def incident_by(args_hash)
       incident_id = args_hash[:id] || @incidents[args_hash[:name].downcase]['id']
       get_incidents_json.select { |i| i['id'] == incident_id }.first
@@ -40,6 +35,11 @@ module StatusPageIo
     def unresolved_incident_by(args_hash)
       return @unresolved_incidents[args_hash[:name].downcase] unless args_hash[:id]
       @unresolved_incidents.select { |i| i['id'] == args_hash[:id] }.first
+    end
+
+    def update_component(args_hash)
+      url = "#{@api_url}/components/#{args_hash[:id] || component_by(args_hash)["id"] }.json"
+      httparty_send(:patch, url, body: { 'component[status]' => args_hash[:status] }).body
     end
 
     # creates either a realtime or scheduled incident
@@ -89,11 +89,11 @@ module StatusPageIo
     end
 
     def get_components_json
-      httparty_send(:get, '#{@api_url}/components.json')
+      httparty_send(:get, "#{@api_url}/components.json")
     end
 
     def get_incidents_json
-      httparty_send(:get, '#{@api_url}/incidents.json')
+      httparty_send(:get, "#{@api_url}/incidents.json")
     end
 
     def httparty_send(action, url, options = {})
