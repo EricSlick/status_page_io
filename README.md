@@ -1,5 +1,5 @@
 # StatusPageIo
-
+[![PullReview stats](https://www.pullreview.com/github/EricSlick/status_page_io/badges/master.svg?)](https://www.pullreview.com/github/EricSlick/status_page_io/reviews/master)
 This is a wrapper for StatusPage.IO's api.
 
 This is a modified version of https://github.com/richardking/statuspagerb that just implements some additional
